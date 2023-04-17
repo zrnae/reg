@@ -47,7 +47,7 @@
                 <button class="btn2" onclick="gotoFunction()" type="button">Register Here</button>
                 <script>
                     function gotoFunction(){
-                        window.location.href = "reg.php";
+                        window.location.href = "registration.php";
                     }
                 </script>
             </form>

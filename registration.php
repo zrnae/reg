@@ -1,3 +1,7 @@
+<?php 
+    ob_start(); 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -55,9 +59,9 @@
         $errorEmail="Email is required.";
     }
     //checks if the date of check out is ahead before the check in
-    if($DOCI=$_POST['DOCI']>$DOCU=$_POST['DOCU']){
+    if($DOCI = $_SESSION['DOCI'] > $DOCU = $_SESSION['DOCU']){
         $errordoci = "the date of check in is ahead than the date of check out";
-    }else if($DOCU=$_POST['DOCU']<$DOCI=$_POST['DOCI']){
+    }else if($DOCU = $_SESSION['DOCU'] < $DOCI = $_SESSION['DOCI']){
         $errordocu="the date of check in is ahead than the date of check out";
     }
     ?>
@@ -106,7 +110,7 @@
         <br>
         <label class = "LGEN">GENDER:</label>
         <input id="MALE" name="GENDER" value="MALE" type="radio" class="IGEN"><label for="MALE" class="G">MALE</label>
-        <input id="FEMALE" name="GENDER" value="FEMALE" type="radio" class="IGEN"> <label for="no" class="G">FEMALE</label>
+        <input id="FEMALE" name="GENDER" value="FEMALE" type="radio" class="IGEN"> <label for="FEMALE" class="G">FEMALE</label>
         <br>
         <!--BIRTHDAY-->
         <br>
@@ -116,16 +120,23 @@
         <br>
         <label for="NATIONALITY" class="LNATIONALITY">NATIONALITY:</label>
         <input type="text"name="NATIONALITY"id="NATIONALITY"class="INATIONALITY"><br>
-        <!--DATE OF CHECK IN-->
+        <!--DATE OF CHECK IN-- DOCI==DATE OF CHECK IN-->
         <br>
         <label for="DOCI" class="LDOCI">DATE OF CHECK IN:</label>
-        <input type="date" name="DOCI"id="DOCI"min="2023-01-01" max="2023-12-31" class= "IDOCI"><br>
+        <input type="date" name="DOCI"id="DOCi"min="2023-01-01" max="2023-12-31" class= "IDOCI"><br>
         <span style="color: red; font-weight: 500"><?= $errordoci?></span>
-        <!--DATE OF CHECK OUT-->
+        <!--DATE OF CHECK OUT-- DOCU = DATE OF CHECK OUT-->
         <br>
         <label for="DOCU" class="LDOCU">DATE OF CHECK OUT:</label>
-        <input type="date" name="DOCU"id="DOCU"min="2023-01-01" max="2023-12-31" class= "IDOCU"><br>
+        <input type="date" name="DOCU"id="DOCu"min="2023-01-01" max="2023-12-31" class= "IDOCU"><br>
         <span style="color: red; font-weight: 500"><?= $errordocu?></span>
+        <br>
+        <!--NUMBER OF GUEST-->
+        <label for="NumberOfAdult" class = "LNumberOfAdult">Number of Guest Adult:</label>
+        <input type = "number" name="NumberOfAdult" id="NumberOfAdult" class=INumberOfAdult><br>
+
+        <label for="NumberOfKids" class = "LNumberOfKids">Number of Guest Kids:</label>
+        <input type = "number" name="NumberOfKids" id="NumberOfKids" class=INumberOfKids><br>
 
         <input type="submit"name="submit"value="submit"class="btnSubmit"><br>
     </form>
@@ -158,12 +169,15 @@
             $NTN = $_POST['NATIONALITY'];
             $DOCI = $_POST['DOCI'];
             $DOCU = $_POST['DOCU'];
+            $NumberOfAdult = $_POST['NumberOfAdult'];
+            $NumberOfKids = $_POST['NumberOfKids'];
 
-            $SQL = "INSERT INTO REG(F_NAME,M_NAME,L_NAME,H_NUMBER,SUBDIVISION,BRGY,CMY,EMAIL,CONTACT,GENDER,BDAY,NATIONALITY,DOCI,DOCU)
-            VALUES('$FNM','$MNM','$LNM','$HN','$SBS','$BRGY','$CMY','$EML','$CNM','$GND','$BDY','$NTN','$DOCI','$DOCU')";
+
+            $SQL = "INSERT INTO REGISTRATION(F_NAME,M_NAME,L_NAME,H_NUMBER,SUBDIVISION,BRGY,CITY_MUNICIPALITY,EMAIL,CONTACT,GENDER,BDAY,NATIONALITY,DATE_OF_CHECK_IN,DATE_OF_CHECK_OUT,NUMBER_OF_ADULTS,NUMBER_OF_KIDS)
+            VALUES('$FNM','$MNM','$LNM','$HN','$SBS','$BRGY','$CMY','$EML','$CNM','$GND','$BDY','$NTN','$DOCI','$DOCU','$NumberOfAdult','$NumberOfKids')";
             $RSLTS = sqlsrv_query($conn,$SQL);
             if($RSLTS){
-                header("location: regsuccess.html");
+                header("location: loginpage.php");
                 exit();
                 echo 'registration Successful';
             }else{
