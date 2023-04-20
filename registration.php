@@ -167,8 +167,8 @@
             $GND = $_POST['GENDER'];
             $BDY = $_POST['BDAY'];
             $NTN = $_POST['NATIONALITY'];
-            $DOCI = $_POST['DOCI'];
-            $DOCU = $_POST['DOCU'];
+            $DOCI = $_SESSION['DOCI'];
+            $DOCU = $_SESSION['DOCU'];
             $NumberOfAdult = $_POST['NumberOfAdult'];
             $NumberOfKids = $_POST['NumberOfKids'];
 
