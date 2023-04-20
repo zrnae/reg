@@ -43,13 +43,6 @@
                     <input type="password" name="userpassword" id="password1" placeholder="PASSWORD">
                 </div>
                 <input type="submit" value="LOG IN" name="usersubmit" class="btn1">
-                <p class="phrasetext">Not a member yet?</p>
-                <button class="btn2" onclick="gotoFunction()" type="button">Register Here</button>
-                <script>
-                    function gotoFunction(){
-                        window.location.href = "registration.php";
-                    }
-                </script>
             </form>
         </div>
         </center>
