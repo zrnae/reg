@@ -10,15 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <!--CSS-->
-    <link rel="stylesheet" href="Style/style.css">
+    <link rel="stylesheet" href="style.css">
     <!--Box Icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <center>
-    <div class="container">
-        <div class="admin-user">
-            <!-- ADMIN LOGIN -->
+    <div class="user-containter">
+        <div class="user-login">
             <!--USER LOGIN-->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="user-form">
                 <h2 class="title">User Login</h2>
@@ -30,9 +29,9 @@
                     <i class='bx bxs-lock-alt'></i>
                     <input type="password" name="userpassword" id="password1" placeholder="PASSWORD">
                 </div>
-                <input type="submit" value="LOG IN" name="usersubmit" class="btn1">
+                <input type="submit" value="LOG IN" name="usersubmit" class="btnSubmit">
                 <br>
-                <button onclick="gotoFunction()" type ="button" class="btns">Log in as Admin</button>
+                <button onclick="gotoFunction()" type ="button" class="btnAdminLogin">Log in as Admin</button>
                 <script>
                     function gotoFunction(){
                     window.location.href = "admin.php";
@@ -77,4 +76,3 @@
         }
     } 
 ?>
-<!-- ADMIN LOGIN -->
