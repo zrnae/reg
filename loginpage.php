@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHLRST: Log In</title>
+    <title>CHLRST: User Log In</title>
     <!--CSS-->
     <link rel="stylesheet" href="style.css">
     <!--Box Icons-->
@@ -17,7 +17,7 @@
 <body>
     <center>
     <div class="user-containter">
-        <div class="user-login">
+        <div class="user-logIn">
             <!--USER LOGIN-->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="user-form">
                 <h2 class="title">User Login</h2>
@@ -29,9 +29,9 @@
                     <i class='bx bxs-lock-alt'></i>
                     <input type="password" name="userpassword" id="password1" placeholder="PASSWORD">
                 </div>
-                <input type="submit" value="LOG IN" name="usersubmit" class="btnSubmit">
+                <input type="submit" value="Log In" name="usersubmit" class="btnSubmit">
                 <br>
-                <button onclick="gotoFunction()" type ="button" class="btnAdminLogin">Log in as Admin</button>
+                <button onclick="gotoFunction()" type ="button" class="btnSwitchAsAdmin">Log in as Admin</button>
                 <script>
                     function gotoFunction(){
                     window.location.href = "admin.php";
