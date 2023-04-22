@@ -1,6 +1,10 @@
 /**Note: Registration and User Log-In needs to responsive**/
 
 /**Registration**/
+.reg-body {
+    margin: 0%;
+    padding: 0%;
+}
 
 /**Log In Page: User**/
 
