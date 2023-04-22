@@ -11,7 +11,7 @@
         <title>CHLRST: Registration</title>
     </head>
 </html>
-<body>
+<body class="reg-body">
     <?php
     //errorvariables for names
     $errorFname="";
