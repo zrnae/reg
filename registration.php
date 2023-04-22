@@ -180,7 +180,7 @@
             if($RSLTS){
                 header("location: loginpage.php");
                 exit();
-                echo 'registration Successful';
+                echo 'Registration Successful';
             }else{
                 echo 'Error';
             }
