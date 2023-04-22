@@ -1,6 +1,5 @@
 <?php 
     ob_start(); 
-    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -13,6 +12,7 @@
 </html>
 <body class="reg-body">
     <?php
+    error_reporting(0);
     //errorvariables for names
     $errorFname="";
     $errorMname="";
@@ -22,8 +22,7 @@
     //error variables for emails
     $errorEmail="";
     //variables for dates of check in and check out
-    $errordoci = "";
-    $errordocu = "";
+    $errordateOfCheckIn = "";
 
     
      //checks if first name is empty and contains text only
@@ -60,10 +59,8 @@
         $errorEmail="Email is required.";
     }
     //checks if the date of check out is ahead before the check in
-    if($DOCI = $_SESSION['DOCI'] > $DOCU = $_SESSION['DOCU']){
-        $errordoci = "the date of check in is ahead than the date of check out";
-    }else if($DOCU = $_SESSION['DOCU'] < $DOCI = $_SESSION['DOCI']){
-        $errordocu="the date of check in is ahead than the date of check out";
+    if ($dateOfCheckIn=$_POST['DOCI'] > $dateOfCheckOut=$_POST['DOCU']){
+        $errordateOfCheckIn = "the date of check in is ahead than the date of check out";   
     }
     ?>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
@@ -124,13 +121,13 @@
         <!--DATE OF CHECK IN-- DOCI==DATE OF CHECK IN-->
         <br>
         <label for="DOCI" class="LDOCI">DATE OF CHECK IN:</label>
-        <input type="date" name="DOCI"id="DOCi"min="2023-01-01" max="2023-12-31" class= "IDOCI"><br>
-        <span style="color: red; font-weight: 500"><?= $errordoci?></span>
+        <input type="date" name="DOCI"id="DOCI"min="2023-01-01" max="2023-12-31" class= "IDOCI"><br>
+        <span style="color: red; font-weight: 500"><?= $errordateOfCheckIn?></span>
         <!--DATE OF CHECK OUT-- DOCU = DATE OF CHECK OUT-->
         <br>
         <label for="DOCU" class="LDOCU">DATE OF CHECK OUT:</label>
-        <input type="date" name="DOCU"id="DOCu"min="2023-01-01" max="2023-12-31" class= "IDOCU"><br>
-        <span style="color: red; font-weight: 500"><?= $errordocu?></span>
+        <input type="date" name="DOCU"id="DOCU"min="2023-01-01" max="2023-12-31" class= "IDOCU"><br>
+        
         <br>
         <!--NUMBER OF GUEST-->
         <label for="NumberOfAdult" class = "LNumberOfAdult">Number of Guest Adult:</label>
@@ -156,22 +153,22 @@
             if($conn==false)
                 die(print_r(sqlsrv_errors(),true));
 
-            $FNM = $_POST['FNAME'];
-            $MNM = $_POST['MNAME'];
-            $LNM = $_POST['LNAME'];
-            $HN = $_POST['HNUMBER'];
-            $SBS = $_POST['SUBDI'];
-            $BRGY = $_POST['BRGY'];
-            $CMY = $_POST['CM'];
-            $EML = $_POST['EMAIL'];
-            $CNM = $_POST['CONTACT'];
-            $GND = $_POST['GENDER'];
-            $BDY = $_POST['BDAY'];
-            $NTN = $_POST['NATIONALITY'];
-            $DOCI = $_SESSION['DOCI'];
-            $DOCU = $_SESSION['DOCU'];
-            $NumberOfAdult = $_POST['NumberOfAdult'];
-            $NumberOfKids = $_POST['NumberOfKids'];
+                $FNM = $_POST['FNAME'];
+                $MNM = $_POST['MNAME'];
+                $LNM = $_POST['LNAME'];
+                $HN = $_POST['HNUMBER'];
+                $SBS = $_POST['SUBDI'];
+                $BRGY = $_POST['BRGY'];
+                $CMY = $_POST['CM'];
+                $EML = $_POST['EMAIL'];
+                $CNM = $_POST['CONTACT'];
+                $GND = $_POST['GENDER'];
+                $BDY = $_POST['BDAY'];
+                $NTN = $_POST['NATIONALITY'];
+                $dateOfCin= $_POST['DOCI'];
+                $dateOfCout = $_POST['DOCU'];
+                $NumberOfAdult = $_POST['NumberOfAdult'];
+                $NumberOfKids = $_POST['NumberOfKids'];
 
 
             $SQL = "INSERT INTO REGISTRATION(F_NAME,M_NAME,L_NAME,H_NUMBER,SUBDIVISION,BRGY,CITY_MUNICIPALITY,EMAIL,CONTACT,GENDER,BDAY,NATIONALITY,DATE_OF_CHECK_IN,DATE_OF_CHECK_OUT,NUMBER_OF_ADULTS,NUMBER_OF_KIDS)
@@ -180,12 +177,12 @@
             if($RSLTS){
                 header("location: loginpage.php");
                 exit();
-                echo 'Registration Successful';
+                echo 'registration Successful';
             }else{
                 echo 'Error';
             }
                 
-        }
+            }
         }
     ?>
 </body>
