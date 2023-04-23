@@ -65,17 +65,17 @@
     ?>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <!--FIRSTNAME-->
-        <label for="FNAME"class="LFNAME">FIRST NAME:</label>
+        <label for="FNAME"class="LFNAME">FIRST NAME</label>
         <input type="text"name="FNAME"id="FNAME"class="IFNAME" placeholder="FIRST NAME"><br>
         <span style="color: red; font-weight: 500"><?= $errorFname?></span>
         <!--MIDDLENAME-->
         <br>
-        <label for="MNAME"class="LMNAME">MIDDLE NAME:</label>
+        <label for="MNAME"class="LMNAME">MIDDLE NAME</label>
         <input type="text"name="MNAME"id="MNAME"class="IMNAME" placeholder="MIDDLE NAME"><br>
         <span style="color: red; font-weight: 500"><?= $errorMname?></span>
         <!--LASTNAME-->
         <br>
-        <label for="LNAME"class="LLNAME">LAST NAME:</label>
+        <label for="LNAME"class="LLNAME">LAST NAME</label>
         <input type="text"name="LNAME"id="LNAME"class="ILNAME" placeholder="LAST NAME"><br>
         <span style="color: red; font-weight: 500"><?= $errorLname?></span>
         <!--HOUSE NUMBER-->

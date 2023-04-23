@@ -1,9 +1,14 @@
 /**Note: Registration and User Log-In needs to responsive**/
+/**Fonts Used: **/
 
 /**Registration**/
 .reg-body {
     margin: 0%;
     padding: 0%;
+    background-color: antiquewhite;
+
+    justify-content: center;
+    text-align: center;
 }
 
 /**Log In Page: User**/
